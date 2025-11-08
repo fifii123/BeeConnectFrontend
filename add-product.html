@@ -9,215 +9,305 @@
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-   <!-- Header -->
-   <div class="header">
-        <div class="logo-container">
-            <div class="logo">
-                <a href="home.html">
-                    <img src="assets/BeeConnect.png" alt="BeeConnect Logo">
-                </a>
-            </div>
-            <div class="page-title">BeeConnect</div>
-        </div>
-        <div class="header-controls">
-            <div class="welcome-message">Witaj, Dawid!</div>
-        </div>
-   </div>
-
-    <!-- Main Content -->
-    <div class="dashboard-container">
-        <div class="dashboard-sidebar">
-            <div class="user-info">
-                <div class="user-avatar">
-                    <img src="assets/default-avatar.png" alt="Avatar użytkownika">
-                </div>
-                <div class="user-name">Dawid Pasieka</div>
-                <div class="user-email">dawid.pasieka@fizyka.com</div>
-                <div class="user-status">Zweryfikowany Pszczelarz</div>
-            </div>
-            <div class="sidebar-nav">
-                <a href="dashboard.html" class="sidebar-nav-item" data-tab="areas">
-                    <i class="fas fa-map-marked-alt"></i>
-                    Twoje Obszary
-                </a>
-                <a href="dashboard.html" class="sidebar-nav-item" data-tab="rented-areas">
-                    <i class="fas fa-hand-holding-heart"></i>
-                    Wynajęte Obszary
-                </a>
-                <a href="dashboard.html" class="sidebar-nav-item active" data-tab="products">
-                    <i class="fas fa-box"></i>
-                    Twoje Produkty
-                </a>
-                <a href="dashboard.html" class="sidebar-nav-item" data-tab="bought-products">
-                    <i class="fas fa-shopping-basket"></i>
-                    Kupione Produkty
-                </a>
-                <a href="edit-profile.html" class="sidebar-nav-item">
-                    <i class="fas fa-user-edit"></i>
-                    Edytuj Profil
-                </a>
-            </div>
-            <a href="logout.html" class="btn btn-outline logout-btn">
-                <i class="fas fa-sign-out-alt"></i>
-                Wyloguj się
+<!-- Header -->
+<div class="header">
+    <div class="logo-container">
+        <div class="logo">
+            <a href="home.html">
+                <img src="assets/BeeConnect.png" alt="BeeConnect Logo">
             </a>
         </div>
-        
-        <div class="dashboard-content">
-            <div class="dashboard-heading">
-                <h1 class="dashboard-title">Dodaj Nowy Produkt</h1>
-                <a class="btn btn-outline" onclick="history.back()">
-                    <i class="fas fa-arrow-left"></i>
-                    Powrót
-                </a>
+        <div class="page-title">BeeConnect</div>
+    </div>
+    <div class="header-controls">
+        <div class="welcome-message">Witaj, <span id="welcome-name">Użytkowniku</span>!</div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="dashboard-container">
+    <div class="dashboard-sidebar">
+        <div class="user-info">
+            <div class="user-avatar">
+                <img src="assets/default-avatar.png" alt="Avatar użytkownika">
             </div>
-            
-            <div class="card">
-                <div class="card-body">
-                    <form id="add-product-form">
-                        <!-- Zdjęcie produktu -->
-                        <div class="form-section">
-                            <h3 class="form-section-title">Zdjęcie produktu</h3>
-                            <div class="form-group image-upload-top">
-                                <div class="image-preview-container">
-                                    <div class="image-preview">
-                                        <img id="product-image-preview" src="/api/placeholder/600/400" alt="Podgląd zdjęcia produktu">
-                                    </div>
-                                    <div class="image-upload-controls">
-                                        <label for="product-image" class="btn btn-outline image-upload-btn">
-                                            <i class="fas fa-upload"></i> Wybierz zdjęcie
-                                        </label>
-                                        <input type="file" id="product-image" name="image" accept="image/*" style="display: none;">
-                                        <span class="selected-file-name">Nie wybrano pliku</span>
-                                    </div>
+            <div class="user-name" id="user-name">Ładowanie...</div>
+            <div class="user-email" id="user-email">ładowanie@email.com</div>
+            <div class="user-status" id="user-status">Użytkownik</div>
+        </div>
+        <div class="sidebar-nav">
+            <a href="dashboard.html" class="sidebar-nav-item" data-tab="areas">
+                <i class="fas fa-map-marked-alt"></i>
+                Twoje Obszary
+            </a>
+            <a href="dashboard.html" class="sidebar-nav-item" data-tab="rented-areas">
+                <i class="fas fa-hand-holding-heart"></i>
+                Wynajęte Obszary
+            </a>
+            <a href="dashboard.html" class="sidebar-nav-item active" data-tab="products">
+                <i class="fas fa-box"></i>
+                Twoje Produkty
+            </a>
+            <a href="dashboard.html" class="sidebar-nav-item" data-tab="bought-products">
+                <i class="fas fa-shopping-basket"></i>
+                Kupione Produkty
+            </a>
+            <a href="edit-profile.html" class="sidebar-nav-item">
+                <i class="fas fa-user-edit"></i>
+                Edytuj Profil
+            </a>
+        </div>
+        <a href="login.html" class="btn btn-outline logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Wyloguj się
+        </a>
+    </div>
+
+    <div class="dashboard-content">
+        <div class="dashboard-heading">
+            <h1 class="dashboard-title">Dodaj Nowy Produkt</h1>
+            <a class="btn btn-outline" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i>
+                Powrót
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <form id="add-product-form">
+                    <!-- Zdjęcie produktu -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">Zdjęcie produktu</h3>
+                        <div class="form-group image-upload-top">
+                            <div class="image-preview-container">
+                                <div class="image-preview">
+                                    <img id="product-image-preview" src="assets/default-product.jpg" alt="Podgląd zdjęcia produktu">
                                 </div>
-                                <small class="field-info">Dodaj zdjęcie swojego produktu. Zalecany rozmiar: 800x600 pikseli.</small>
+                                <div class="image-upload-controls">
+                                    <label for="product-image" class="btn btn-outline image-upload-btn">
+                                        <i class="fas fa-upload"></i> Wybierz zdjęcie
+                                    </label>
+                                    <input type="file" id="product-image" name="image" accept="image/*" style="display: none;">
+                                    <span class="selected-file-name">Nie wybrano pliku</span>
+                                </div>
                             </div>
+                            <small class="field-info">Dodaj zdjęcie swojego produktu. Zalecany rozmiar: 800x600 pikseli.</small>
+                        </div>
+                    </div>
+
+                    <!-- Informacje podstawowe -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">Informacje podstawowe</h3>
+                        <div class="form-group">
+                            <label for="product-name">Nazwa produktu*</label>
+                            <input type="text" id="product-name" name="name" placeholder="Np. Miód lipowy" required>
                         </div>
 
-                        <!-- Informacje podstawowe -->
-                        <div class="form-section">
-                            <h3 class="form-section-title">Informacje podstawowe</h3>
-                            <div class="form-group">
-                                <label for="product-name">Nazwa produktu*</label>
-                                <input type="text" id="product-name" name="name" placeholder="Np. Miód lipowy" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="product-type">Typ produktu*</label>
-                                <select id="product-type" name="type" required>
-                                    <option value="" disabled selected>Wybierz typ produktu</option>
-                                    <option value="miód">Miód</option>
-                                    <option value="pyłek">Pyłek pszczeli</option>
-                                    <option value="wosk">Wosk pszczeli</option>
-                                    <option value="propolis">Propolis</option>
-                                    <option value="pierzga">Pierzga</option>
-                                    <option value="mleczko">Mleczko pszczele</option>
-                                    <option value="inny">Inny</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="product-quantity">Ilość*</label>
-                                    <input type="number" id="product-quantity" name="quantity" min="1" placeholder="Np. 15" required>
-                                </div>
-                              
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="product-price">Cena (PLN)*</label>
-                                    <input type="number" id="product-price" name="price" step="0.01" min="0" placeholder="Np. 35.00" required>
-                                </div>
-                               
-                            </div>
-                            
-          
+                        <div class="form-group">
+                            <label for="product-type">Typ produktu*</label>
+                            <select id="product-type" name="type" required>
+                                <option value="" disabled selected>Wybierz typ produktu</option>
+                                <option value="HONEY">Miód</option>
+                                <option value="POLLEN">Pyłek pszczeli</option>
+                                <option value="WAX">Wosk pszczeli</option>
+                                <option value="PROPOLIS">Propolis</option>
+                                <option value="BEE_BREAD">Pierzga</option>
+                                <option value="ROYAL_JELLY">Mleczko pszczele</option>
+                                <option value="OTHER">Inny</option>
+                            </select>
                         </div>
-                        
-                        <!-- Informacje szczegółowe -->
-                        <div class="form-section">
-                            <h3 class="form-section-title">Informacje szczegółowe</h3>
-                            
-                            <div class="form-group">
-                                <label for="product-flowers">Pochodzenie kwiatowe (dla miodu)</label>
-                                <input type="text" id="product-flowers" name="flowers" placeholder="Np. Lipa, Wielokwiat">
-                                <small class="field-info">Oddziel różne typy kwiatów przecinkami</small>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="product-description">Opis produktu*</label>
-                                <textarea id="product-description" name="description" rows="5" placeholder="Opisz szczegółowo swój produkt, jego właściwości i zalety..." required></textarea>
-                            </div>
-                            
-                
-                        </div>
-                        
 
-                        
-                        <div class="form-actions">
-                            <button type="button" class="btn btn-outline" id="cancel-btn">
-                                <i class="fas fa-times"></i>
-                                Anuluj
-                            </button>
-                            <button type="submit" class="btn btn-primary" id="save-product-btn">
-                                <i class="fas fa-save"></i>
-                                Zapisz produkt
-                            </button>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-quantity">Ilość*</label>
+                                <input type="number" id="product-quantity" name="quantity" min="1" placeholder="Np. 15" required>
+                            </div>
+
                         </div>
-                    </form>
-                </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-price">Cena (PLN)*</label>
+                                <input type="number" id="product-price" name="price" step="0.01" min="0" placeholder="Np. 35.00" required>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Informacje szczegółowe -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">Informacje szczegółowe</h3>
+
+                        <div class="form-group" id="flowers-field">
+                            <label for="product-flowers">Pochodzenie kwiatowe (dla miodu)</label>
+                            <input type="text" id="product-flowers" name="flowers" placeholder="Np. Lipa, Wielokwiat">
+                            <small class="field-info">Oddziel różne typy kwiatów przecinkami</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-description">Opis produktu*</label>
+                            <textarea id="product-description" name="description" rows="5" placeholder="Opisz szczegółowo swój produkt, jego właściwości i zalety..." required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="cancel-btn">
+                            <i class="fas fa-times"></i>
+                            Anuluj
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="save-product-btn">
+                            <i class="fas fa-save"></i>
+                            Zapisz produkt
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
+<script>
+    const API_URL = 'http://localhost:8080/api';
+
+    // Load user profile
+    async function loadUserProfile() {
+        try {
+            const response = await fetch(`${API_URL}/auth/user`, {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            if (response.ok) {
+                const user = await response.json();
+                document.getElementById('user-name').textContent = `${user.firstname || ''} ${user.lastname || ''}`.trim() || 'Użytkownik';
+                document.getElementById('welcome-name').textContent = user.firstname || 'Użytkowniku';
+                document.getElementById('user-email').textContent = user.email || 'nieznany@email.com';
+                document.getElementById('user-status').textContent = user.role === 'BEEKEEPER' ? 'Zweryfikowany Pszczelarz' : 'Użytkownik';
+            } else if (response.status === 401) {
+                alert('Sesja wygasła. Zaloguj się ponownie.');
+                window.location.href = 'login.html';
+            }
+        } catch (error) {
+            console.error('Błąd podczas ładowania profilu:', error);
+        }
+    }
+
+    // Podgląd wybranego zdjęcia
+    document.getElementById('product-image').addEventListener('change', function() {
+        const fileName = this.files[0] ? this.files[0].name : 'Nie wybrano pliku';
+        this.closest('.image-upload-controls').querySelector('.selected-file-name').textContent = fileName;
+
         // Podgląd wybranego zdjęcia
-        document.getElementById('product-image').addEventListener('change', function() {
-            const fileName = this.files[0] ? this.files[0].name : 'Nie wybrano pliku';
-            this.closest('.image-upload-controls').querySelector('.selected-file-name').textContent = fileName;
-            
-            // Podgląd wybranego zdjęcia
-            if (this.files && this.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('product-image-preview').src = e.target.result;
-                };
-                reader.readAsDataURL(this.files[0]);
-            }
-        });
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('product-image-preview').src = e.target.result;
+            };
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
 
-        // Obsługa formularza
-        document.getElementById('add-product-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Tutaj normalnie wysyłalibyśmy dane do serwera
-            // Symulacja pomyślnego dodania produktu
-            alert('Produkt został pomyślnie dodany!');
-            
-            // Przekierowanie do listy produktów
+    // Convert file to Base64
+    function toBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result.split(',')[1]);
+            reader.onerror = error => reject(error);
+            reader.readAsDataURL(file);
+        });
+    }
+
+    // Obsługa formularza
+    document.getElementById('add-product-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById('save-product-btn');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Zapisywanie...';
+
+        try {
+            let imageBase64 = null;
+            const imageFile = document.getElementById('product-image').files[0];
+
+            if (imageFile) {
+                imageBase64 = await toBase64(imageFile);
+            }
+
+
+            console.log(imageBase64);
+
+            const productData = {
+                name: document.getElementById('product-name').value,
+                category: document.getElementById('product-type').value,
+                stock: parseInt(document.getElementById('product-quantity').value),
+                price: parseFloat(document.getElementById('product-price').value),
+                description: document.getElementById('product-description').value,
+                imageBase64: imageBase64
+            };
+
+            // Dodaj flowerOrigin tylko dla miodu
+            if (productData.category === 'HONEY') {
+                const flowers = document.getElementById('product-flowers').value;
+                if (flowers) {
+                    productData.flowerOrigin = flowers;
+                }
+            }
+
+            console.log('Wysyłanie danych produktu:', productData);
+
+            const response = await fetch(`${API_URL}/products`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body: JSON.stringify(productData)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Błąd podczas dodawania produktu');
+            }
+
+            const result = await response.json();
+            console.log('Produkt dodany:', result);
+
+            alert('✓ Produkt został pomyślnie dodany!');
             window.location.href = 'dashboard.html';
-        });
 
-        // Obsługa przycisku anuluj
-        document.getElementById('cancel-btn').addEventListener('click', function() {
-            if (confirm('Czy na pewno chcesz anulować dodawanie produktu? Wprowadzone dane zostaną utracone.')) {
-                window.location.href = 'dashboard.html';
-            }
-        });
+        } catch (error) {
+            console.error('Błąd podczas dodawania produktu:', error);
+            alert(`Nie udało się dodać produktu:\n${error.message}`);
 
-        // Aktualizacja typu produktu w zależności od wyboru
-        document.getElementById('product-type').addEventListener('change', function() {
-            const flowersField = document.getElementById('product-flowers').closest('.form-group');
-            
-            // Pokaż/ukryj pole z kwiatami w zależności od typu produktu
-            if (this.value === 'miód') {
-                flowersField.style.display = 'block';
-            } else {
-                flowersField.style.display = 'none';
-            }
-        });
-    </script>
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-save"></i> Zapisz produkt';
+        }
+    });
+
+    // Obsługa przycisku anuluj
+    document.getElementById('cancel-btn').addEventListener('click', function() {
+        if (confirm('Czy na pewno chcesz anulować dodawanie produktu? Wprowadzone dane zostaną utracone.')) {
+            window.location.href = 'dashboard.html';
+        }
+    });
+
+    // Aktualizacja typu produktu w zależności od wyboru
+    document.getElementById('product-type').addEventListener('change', function() {
+        const flowersField = document.getElementById('flowers-field');
+
+        // Pokaż/ukryj pole z kwiatami w zależności od typu produktu
+        if (this.value === 'HONEY') {
+            flowersField.style.display = 'block';
+        } else {
+            flowersField.style.display = 'none';
+        }
+    });
+
+    // Inicjalizacja - ukryj pole kwiatów na początku
+    document.getElementById('flowers-field').style.display = 'none';
+
+    // Load user profile on page load
+    window.addEventListener('DOMContentLoaded', loadUserProfile);
+</script>
 </body>
 </html>

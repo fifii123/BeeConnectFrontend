@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles/styles.css">
     <script src="scripts/auth.js"></script>
+    <script src="scripts/profile-products.js"></script>
+
+
 </head>
 <body>
 <!-- Header -->
@@ -86,6 +89,30 @@
             </div>
             <div class="card-container" id="rented-areas-container">
                 <!-- Wynajęte obszary będą dynamicznie wstawiane tutaj -->
+            </div>
+        </div>
+
+        <!-- Twoje Produkty -->
+        <div class="tab-content" id="products">
+            <div class="dashboard-heading">
+                <h1 class="dashboard-title">Twoje Produkty</h1>
+                <a href="add-product.html" class="btn btn-accent">
+                    <i class="fas fa-plus"></i>
+                    Dodaj Nowy Produkt
+                </a>
+            </div>
+            <div class="card-container" id="my-products-container">
+                <!-- Produkty będą dynamicznie wstawiane tutaj -->
+            </div>
+        </div>
+
+        <!-- Kupione Produkty -->
+        <div class="tab-content" id="bought-products">
+            <div class="dashboard-heading">
+                <h1 class="dashboard-title">Kupione Produkty</h1>
+            </div>
+            <div class="card-container" id="bought-products-container">
+                <!-- Kupione produkty będą dynamicznie wstawiane tutaj -->
             </div>
         </div>
 
@@ -378,11 +405,13 @@
                 <div class="form-group">
                     <label for="edit-product-type">Typ produktu:</label>
                     <select id="edit-product-type" name="type">
-                        <option value="miód">Miód</option>
-                        <option value="pyłek">Pyłek pszczeli</option>
-                        <option value="wosk">Wosk</option>
-                        <option value="propolis">Propolis</option>
-                        <option value="inny">Inny</option>
+                        <option value="HONEY">Miód</option>
+                        <option value="POLLEN">Pyłek pszczeli</option>
+                        <option value="WAX">Wosk</option>
+                        <option value="PROPOLIS">Propolis</option>
+                        <option value="BEE_BREAD">Pierzga</option>
+                        <option value="ROYAL_JELLY">Mleczko pszczele</option>
+                        <option value="OTHER">Inny</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -669,6 +698,130 @@
         }
     }
 
+    // Funkcja do tłumaczenia kategorii produktu
+    function translateProductCategory(category) {
+        const translations = {
+            'HONEY': 'Miód',
+            'POLLEN': 'Pyłek pszczeli',
+            'WAX': 'Wosk pszczeli',
+            'PROPOLIS': 'Propolis',
+            'BEE_BREAD': 'Pierzga',
+            'ROYAL_JELLY': 'Mleczko pszczele',
+            'OTHER': 'Inny'
+        };
+        return translations[category] || category;
+    }
+
+    // Funkcja do pobierania produktów użytkownika
+    async function fetchMyProducts() {
+        try {
+            const response = await fetch(`${API_URL}/products/my`, {
+                method: "GET",
+                credentials: "include"
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const products = await response.json();
+            const container = document.getElementById('my-products-container');
+            container.innerHTML = '';
+
+            if (products.length === 0) {
+                container.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">Nie masz jeszcze żadnych produktów. Dodaj pierwszy produkt!</p>';
+                return;
+            }
+
+            products.forEach(product => {
+                const status = product.available ? 'Dostępny' : 'Wyprzedany';
+                const statusClass = product.available ? 'card-status-active' : 'card-status-inactive';
+                const categoryName = translateProductCategory(product.category);
+
+                const card = `
+                <div class="card" data-product-id="${product.id || ''}">
+                    <div class="card-header">
+                        <div class="card-header-title">${product.name || 'Brak nazwy'}</div>
+                        <div class="card-header-status ${statusClass}">${status}</div>
+                    </div>
+                    <div class="area-preview">
+                        <img src="${product.imageBase64 ? `data:image/jpeg;base64,${product.imageBase64}` : 'assets/default-product.jpg'}"
+                             alt="Zdjęcie produktu"
+                             onerror="this.src='assets/default-product.jpg'">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-property">
+                            <div class="card-property-label">Typ:</div>
+                            <div class="card-property-value">${categoryName}</div>
+                        </div>
+                        <div class="card-property">
+                            <div class="card-property-label">Ilość:</div>
+                            <div class="card-property-value">${product.stock || 0} szt.</div>
+                        </div>
+                        <div class="card-property">
+                            <div class="card-property-label">Cena:</div>
+                            <div class="card-property-value">${(product.price || 0).toFixed(2)} PLN</div>
+                        </div>
+                        ${product.flowerOrigin ? `
+                        <div class="card-property">
+                            <div class="card-property-label">Pochodzenie:</div>
+                            <div class="card-property-value">${product.flowerOrigin}</div>
+                        </div>
+                        ` : ''}
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-outline card-btn edit-product-btn" data-product='${JSON.stringify(product).replace(/'/g, "&apos;")}'>
+                            <i class="fas fa-edit"></i> Edytuj
+                        </button>
+                        <button class="btn btn-danger card-btn delete-product-btn" data-id="${product.id || ''}">
+                            <i class="fas fa-trash-alt"></i> Usuń
+                        </button>
+                    </div>
+                </div>
+                `;
+                container.insertAdjacentHTML('beforeend', card);
+            });
+
+            // Event listenery dla przycisków edycji produktu
+            document.querySelectorAll('.edit-product-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productData = this.getAttribute('data-product');
+                    const product = JSON.parse(productData);
+
+                    console.log('Product data:', product);
+
+                    document.getElementById('edit-product-id').value = product.id || '';
+                    document.getElementById('edit-product-title').value = product.name || '';
+                    document.getElementById('edit-product-status-switch').checked = product.available;
+                    document.getElementById('edit-product-type').value = product.category || 'OTHER';
+                    document.getElementById('edit-product-quantity').value = product.stock || 0;
+                    document.getElementById('edit-product-price').value = product.price || 0;
+                    document.getElementById('edit-product-description').value = product.description || '';
+                    document.getElementById('edit-product-current-image').src = product.imageBase64
+                        ? `data:image/jpeg;base64,${product.imageBase64}`
+                        : 'assets/default-product.jpg';
+
+                    openModal('edit-product-modal');
+                });
+            });
+
+            // Event listenery dla przycisków usuwania produktu
+            document.querySelectorAll('.delete-product-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemId = this.getAttribute('data-id');
+                    document.getElementById('delete-item-id').value = itemId;
+                    document.getElementById('delete-item-type').value = 'product';
+                    openModal('delete-confirm-modal');
+                });
+            });
+
+        } catch (error) {
+            console.error('Error fetching my products:', error);
+            document.getElementById('my-products-container').innerHTML =
+                '<p style="text-align: center; padding: 2rem; color: #e74c3c;">Błąd podczas ładowania produktów. Sprawdź połączenie z serwerem.</p>';
+        }
+    }
+
     document.querySelectorAll('.sidebar-nav-item').forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
@@ -684,6 +837,14 @@
                 window.location.href = 'edit-profile.html';
             } else {
                 document.getElementById(tabId).classList.add('active');
+
+                // Załaduj dane dla odpowiedniej zakładki
+                if (tabId === 'products') {
+                    fetchMyProducts();
+                }
+                if (tabId === 'bought-products') {
+                    loadMyPurchases();
+                }
             }
         });
     });
@@ -763,7 +924,7 @@
                 });
                 if (response.ok) {
                     alert(`Obszar #${itemId} został usunięty!`);
-                    fetchMyAreas(); // Refresh owned areas
+                    fetchMyAreas();
                 } else {
                     alert('Błąd podczas usuwania obszaru. Sprawdź konsolę.');
                     console.error('Delete area error:', response.status);
@@ -772,8 +933,24 @@
                 console.error('Error deleting area:', error);
                 alert('Nie udało się usunąć obszaru. Sprawdź połączenie z serwerem.');
             }
-        } else {
-            alert(`Element (${itemType} #${itemId}) został usunięty!`);
+        } else if (itemType === 'product') {
+            try {
+                const response = await fetch(`${API_URL}/products/${itemId}`, {
+                    method: 'DELETE',
+                    credentials: 'include'
+                });
+                if (response.ok) {
+                    alert(`Produkt #${itemId} został usunięty!`);
+                    fetchMyProducts();
+                } else {
+                    const errorData = await response.json();
+                    alert(`Błąd podczas usuwania produktu: ${errorData.error || 'Nieznany błąd'}`);
+                    console.error('Delete product error:', response.status);
+                }
+            } catch (error) {
+                console.error('Error deleting product:', error);
+                alert('Nie udało się usunąć produktu. Sprawdź połączenie z serwerem.');
+            }
         }
 
         closeAllModals();
@@ -870,9 +1047,59 @@
         }
     });
 
-    document.querySelector('.submit-edit-product-btn').addEventListener('click', function() {
-        alert('Produkt został zaktualizowany!');
-        closeAllModals();
+    // Handle edit product submission
+    document.querySelector('.submit-edit-product-btn').addEventListener('click', async function(e) {
+        e.preventDefault();
+
+        const productId = document.getElementById('edit-product-id').value;
+        let imgBase64 = document.getElementById('edit-product-current-image').src.includes('base64')
+            ? document.getElementById('edit-product-current-image').src.split(',')[1]
+            : null;
+
+        const imageFile = document.getElementById('edit-product-image').files[0];
+        if (imageFile) {
+            try {
+                imgBase64 = await toBase64(imageFile);
+            } catch (error) {
+                console.error('Error converting image to Base64:', error);
+                alert('Błąd podczas przetwarzania zdjęcia. Spróbuj ponownie.');
+                return;
+            }
+        }
+
+        const updateProductDTO = {
+            id: parseInt(productId),
+            name: document.getElementById('edit-product-title').value,
+            category: document.getElementById('edit-product-type').value,
+            stock: parseInt(document.getElementById('edit-product-quantity').value) || 0,
+            price: parseFloat(document.getElementById('edit-product-price').value) || 0,
+            description: document.getElementById('edit-product-description').value,
+            imgBase64: imgBase64,
+            available: document.getElementById('edit-product-status-switch').checked
+        };
+
+        try {
+            const response = await fetch(`${API_URL}/products`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body: JSON.stringify(updateProductDTO)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Błąd podczas aktualizacji produktu');
+            }
+
+            alert('Produkt został zaktualizowany!');
+            closeAllModals();
+            fetchMyProducts();
+        } catch (error) {
+            console.error('Error updating product:', error);
+            alert(`Nie udało się zaktualizować produktu: ${error.message}`);
+        }
     });
 
     // Load data on page load
@@ -880,6 +1107,7 @@
         await loadUserProfile();
         fetchMyAreas();
         fetchRentedAreas();
+        fetchMyProducts();
     });
 </script>
 </body>

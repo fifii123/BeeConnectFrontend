@@ -7,6 +7,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo a {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-right: 16px;
+        }
+
+        .logo img {
+            max-width: 80%;
+            max-height: 80%;
+        }
         :root {
             --primary: #F2A900;         /* Miodowy żółty */
             --primary-light: #FFD875;   /* Jasny miód */
@@ -63,28 +92,6 @@
             gap: 16px;
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo {
-            width: 42px;
-            height: 42px;
-            margin-right: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--primary-light);
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .logo img {
-            max-width: 80%;
-            max-height: 80%;
-        }
 
         .welcome-message, .page-title {
             font-size: 18px;
@@ -706,672 +713,137 @@
         }
     </style>
 </head>
+<!-- MARKETPLACE.HTML - BODY -->
+<!-- Skopiuj cały ten kod i zastąp nim <body> w marketplace.html -->
+
 <body>
-    <!-- Header -->
-    <div class="header">
-        <div class="logo-container">
-            <div class="logo">
-                <a href="home.html">
-                    <img src="assets/BeeConnect.png" alt="BeeConnect Logo">
-                </a>
-            </div>
-            <div class="page-title">BeeConnect</div>
+<!-- Header -->
+<div class="header">
+    <div class="logo-container">
+        <div class="logo">
+            <a href="home.html">
+                <img src="assets/BeeConnect.png" alt="BeeConnect Logo">
+            </a>
         </div>
-        <div class="header-controls">
-            <div class="header-nav">
-                <a href="home.html" class="header-nav-item">Strona główna</a>
-                <a href="marketplace.html" class="header-nav-item active">Marketplace</a>
-    
-            </div>
-            <div class="welcome-message">Witaj, Dawid!</div>
-            <div class="header-actions">
-                <a href="#" class="header-icon-btn" title="Powiadomienia">
-                    <i class="far fa-bell"></i>
-                    <span class="notification-badge">2</span>
-                </a>
-                <a href="chat.html" class="header-icon-btn" title="Wiadomości">
-                    <i class="far fa-envelope"></i>
-                </a>
-                <a href="profile.html" class="btn btn-outline user-profile-btn">
-                    <div class="mini-avatar">
-                        <img src="assets/default-avatar.png" alt="Avatar użytkownika">
-                    </div>
-                    <span>Mój Profil</span>
-                </a>
-            </div>
-        </div>
+        <div class="page-title">BeeConnect Marketplace</div>
     </div>
-    
-    <style>
-        /* Header styling */
-        .header {
-            padding: 10px 24px;
-        }
-        
-        .header-nav {
-            display: flex;
-            margin-right: 20px;
-        }
-        
-        .header-nav-item {
-            padding: 8px 16px;
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 500;
-            border-radius: var(--radius);
-            transition: var(--transition);
-        }
-        
-        .header-nav-item.active {
-            background-color: var(--primary-light);
-            color: var(--primary-dark);
-            font-weight: 600;
-        }
-        
-        .header-nav-item:hover:not(.active) {
-            background-color: rgba(0,0,0,0.03);
-        }
-        
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .header-icon-btn {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background-color: #f5f5f5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark);
-            text-decoration: none;
-            position: relative;
-            transition: var(--transition);
-        }
-        
-        .header-icon-btn:hover {
-            background-color: var(--primary-light);
-            color: var(--primary-dark);
-        }
-        
-        .notification-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: #ff6b6b;
-            color: white;
-            font-size: 10px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            border: 2px solid white;
-        }
-        
-        .user-profile-btn {
-            display: flex;
-            align-items: center;
-            padding: 6px 14px 6px 6px;
-        }
-        
-        .mini-avatar {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 8px;
-        }
-        
-        .mini-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        @media (max-width: 992px) {
-            .header-nav {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .welcome-message {
-                display: none;
-            }
-            
-            .user-profile-btn span {
-                display: none;
-            }
-            
-            .user-profile-btn {
-                padding: 6px;
-            }
-            
-            .mini-avatar {
-                margin-right: 0;
-            }
-        }
-    </style>
+    <div class="header-controls">
+        <a href="chat.html" class="btn btn-outline" style="position: relative;">
+            <i class="fas fa-comments"></i>
+            <span id="unread-badge" style="display: none; position: absolute; top: -5px; right: -5px; background: #F2A900; color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: 600;"></span>
+        </a>
+        <a href="profile.html" class="btn btn-secondary">
+            <i class="fas fa-user"></i> Mój profil
+        </a>
+    </div>
+</div>
+
+
+<!-- Main Container -->
+<div class="marketplace-container">
+    <!-- Sidebar - Filtry -->
+    <aside class="marketplace-sidebar">
+        <!-- Wyszukiwarka -->
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Szukaj produktów...">
+        </div>
+
+        <!-- Kategorie -->
+        <div class="sidebar-section">
+            <div class="sidebar-title">
+                <i class="fas fa-tag"></i>
+                Kategorie
+            </div>
+            <div class="filter-group">
+                <label class="filter-option">
+                    <input type="checkbox" class="filter-checkbox" id="category-all" checked>
+                    <span class="filter-label">Wszystkie</span>
+                </label>
+                <label class="filter-option">
+                    <input type="checkbox" class="filter-checkbox" id="category-honey">
+                    <span class="filter-label">Miód</span>
+                </label>
+                <label class="filter-option">
+                    <input type="checkbox" class="filter-checkbox" id="category-wax">
+                    <span class="filter-label">Wosk</span>
+                </label>
+                <label class="filter-option">
+                    <input type="checkbox" class="filter-checkbox" id="category-pollen">
+                    <span class="filter-label">Pyłek</span>
+                </label>
+                <label class="filter-option">
+                    <input type="checkbox" class="filter-checkbox" id="category-propolis">
+                    <span class="filter-label">Propolis</span>
+                </label>
+                <label class="filter-option">
+                    <input type="checkbox" class="filter-checkbox" id="category-royal_jelly">
+                    <span class="filter-label">Mleczko pszczele</span>
+                </label>
+                <label class="filter-option">
+                    <input type="checkbox" class="filter-checkbox" id="category-honeycomb">
+                    <span class="filter-label">Plaster miodu</span>
+                </label>
+                <label class="filter-option">
+                    <input type="checkbox" class="filter-checkbox" id="category-equipment">
+                    <span class="filter-label">Sprzęt</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Zakres cenowy -->
+        <div class="sidebar-section">
+            <div class="sidebar-title">
+                <i class="fas fa-dollar-sign"></i>
+                Zakres cenowy
+            </div>
+            <div class="price-inputs">
+                <input type="number" class="price-input" id="min-price" placeholder="Od" min="0" value="0">
+                <input type="number" class="price-input" id="max-price" placeholder="Do" min="0" value="1000">
+            </div>
+            <button class="btn btn-primary apply-filter-btn" onclick="filterByPrice()">
+                Zastosuj
+            </button>
+        </div>
+    </aside>
 
     <!-- Main Content -->
-    <div class="marketplace-container">
-        <!-- Sidebar with filters -->
-        <div class="marketplace-sidebar">
-            <div class="sidebar-section">
-                <h3 class="sidebar-title"><i class="fas fa-search"></i> Wyszukaj</h3>
-                <div class="search-container">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" class="search-input" placeholder="Szukaj produktów...">
-                </div>
+    <main class="marketplace-content">
+        <!-- Header z sortowaniem -->
+        <div class="marketplace-header">
+            <div>
+                <h1 class="marketplace-title">Produkty Marketplace</h1>
+                <div class="product-count"></div>
             </div>
-
-            <div class="sidebar-section">
-                <h3 class="sidebar-title"><i class="fas fa-tags"></i> Kategorie</h3>
-                <div class="filter-group">
-                    <div class="filter-option">
-                        <input type="checkbox" id="category-all" class="filter-checkbox" checked>
-                        <label for="category-all" class="filter-label">Wszystkie</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="category-honey" class="filter-checkbox">
-                        <label for="category-honey" class="filter-label">Miód</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="category-pollen" class="filter-checkbox">
-                        <label for="category-pollen" class="filter-label">Pyłek pszczeli</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="category-wax" class="filter-checkbox">
-                        <label for="category-wax" class="filter-label">Wosk</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="category-propolis" class="filter-checkbox">
-                        <label for="category-propolis" class="filter-label">Propolis</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="category-equipment" class="filter-checkbox">
-                        <label for="category-equipment" class="filter-label">Sprzęt pszczelarski</label>
-                    </div>
-                </div>
+            <div class="sort-container">
+                <label class="sort-label">Sortuj:</label>
+                <select class="sort-select">
+                    <option value="newest">Najnowsze</option>
+                    <option value="price-asc">Cena: rosnąco</option>
+                    <option value="price-desc">Cena: malejąco</option>
+                    <option value="popular">Najpopularniejsze</option>
+                </select>
             </div>
-
-
         </div>
 
-        <!-- Main content with product listings -->
-        <div class="marketplace-content">
-            <div class="marketplace-header">
-                <h1 class="marketplace-title">Produkty pszczelarskie</h1>
-        
-                <div class="sort-container">
-                    <span class="sort-label">Sortuj według: </span>
-                    <select class="sort-select">
-                        <option value="newest">Najnowsze</option>
-                        <option value="price-asc">Cena: od najniższej</option>
-                        <option value="price-desc">Cena: od najwyższej</option>
-                        <option value="rating">Ocena: od najwyższej</option>
-                    </select>
-                    <div class="view-toggle">
-                        <button class="view-btn active" title="Widok siatki">
-                            <i class="fas fa-th"></i>
-                        </button>
-                        <button class="view-btn" title="Widok listy">
-                            <i class="fas fa-list"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <style>
-                    .marketplace-title {
-                        font-size: 28px;
-                        font-weight: 700;
-                        color: var(--secondary);
-                        margin-bottom: 10px;
-                    }
-                    
-                    .marketplace-stats {
-                        margin-bottom: 15px;
-                        color: var(--medium);
-                        font-size: 14px;
-                    }
-                    
-                    .marketplace-stats strong {
-                        color: var(--primary-dark);
-                    }
-                </style>
-            </div>
-
-            <div class="product-grid">
-                <!-- Product 1 -->
-                <div class="product-card" onclick="window.location.href='product-details.html?id=1'">
-                    <div class="product-image">
-                        <img src="assets/product1.jpg" alt="Miód lipowy">
-                        <div class="product-badge">Nowość</div>
-                <div class="quick-actions">
-                    <button class="quick-action-btn" title="Dodaj do ulubionych">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <button class="quick-action-btn" title="Szybki podgląd">
-                        <i class="far fa-eye"></i>
-                    </button>
-                </div>
-                
-                <style>
-                    .quick-actions {
-                        position: absolute;
-                        top: 15px;
-                        left: 15px;
-                        display: flex;
-                        flex-direction: column;
-                        gap: 8px;
-                        z-index: 2;
-                        opacity: 0;
-                        transform: translateX(-10px);
-                        transition: all 0.3s ease;
-                    }
-                    
-                    .product-card:hover .quick-actions {
-                        opacity: 1;
-                        transform: translateX(0);
-                    }
-                    
-                    .quick-action-btn {
-                        width: 36px;
-                        height: 36px;
-                        border-radius: 50%;
-                        background-color: rgba(255, 255, 255, 0.9);
-                        border: none;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        color: var(--secondary);
-                        cursor: pointer;
-                        transition: all 0.2s ease;
-                        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-                    }
-                    
-                    .quick-action-btn:hover {
-                        background-color: var(--primary-light);
-                        transform: scale(1.1);
-                    }
-                </style>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Miód lipowy premium</h3>
-                        <div class="product-category">Miód</div>
-                        <div class="product-seller">
-                            <div class="seller-avatar">
-                                <img src="assets/default-avatar.png" alt="Avatar sprzedawcy">
-                            </div>
-                            <span>Jan Kowalski</span>
-                        </div>
-                        <div class="product-footer">
-                            <div class="product-price">35 PLN</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i>
-                                4.9 (28)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="product-card" onclick="window.location.href='product-details.html?id=2'">
-                    <div class="product-image">
-                        <img src="assets/product2.jpg" alt="Miód gryczany">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Miód gryczany</h3>
-                        <div class="product-category">Miód</div>
-                        <div class="product-seller">
-                            <div class="seller-avatar">
-                                <img src="assets/default-avatar.png" alt="Avatar sprzedawcy">
-                            </div>
-                            <span>Anna Nowak</span>
-                        </div>
-                        <div class="product-footer">
-                            <div class="product-price">40 PLN</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i>
-                                4.7 (19)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="product-card" onclick="window.location.href='product-details.html?id=3'">
-                    <div class="product-image">
-                        <img src="assets/product3.jpg" alt="Pyłek pszczeli">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Pyłek pszczeli naturalny</h3>
-                        <div class="product-category">Pyłek</div>
-                        <div class="product-seller">
-                            <div class="seller-avatar">
-                                <img src="assets/default-avatar.png" alt="Avatar sprzedawcy">
-                            </div>
-                            <span>Marek Pszczelarski</span>
-                        </div>
-                        <div class="product-footer">
-                            <div class="product-price">25 PLN</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i>
-                                4.8 (12)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="product-card" onclick="window.location.href='product-details.html?id=4'">
-                    <div class="product-image">
-                        <img src="assets/bought-product2.jpg" alt="Wosk pszczeli">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Wosk pszczeli naturalny</h3>
-                        <div class="product-category">Wosk</div>
-                        <div class="product-seller">
-                            <div class="seller-avatar">
-                                <img src="assets/default-avatar.png" alt="Avatar sprzedawcy">
-                            </div>
-                            <span>Piotr Miodowy</span>
-                        </div>
-                        <div class="product-footer">
-                            <div class="product-price">60 PLN</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i>
-                                4.5 (8)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                                    <!-- Product 5 -->
-                <div class="product-card" onclick="window.location.href='product-details.html?id=5'">
-                    <div class="product-image">
-                        <img src="assets/bought-product1.jpg" alt="Miód akacjowy">
-                        <div class="product-badge bestseller">Bestseller</div>
-                        <div class="quick-actions">
-                            <button class="quick-action-btn" title="Dodaj do ulubionych">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="quick-action-btn" title="Szybki podgląd">
-                                <i class="far fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Miód akacjowy premium</h3>
-                        <div class="product-category">Miód</div>
-                        <div class="product-seller">
-                            <div class="seller-avatar">
-                                <img src="assets/default-avatar.png" alt="Avatar sprzedawcy">
-                            </div>
-                            <span>Anna Miodowa</span>
-                        </div>
-                        <div class="product-footer">
-                            <div class="product-price">45 PLN</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i>
-                                5.0 (32)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 6 -->
-                <div class="product-card" onclick="window.location.href='product-details.html?id=6'">
-                    <div class="product-image">
-                        <img src="assets/rented-area1.jpg" alt="Propolis">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Propolis w kroplach</h3>
-                        <div class="product-category">Propolis</div>
-                        <div class="product-seller">
-                            <div class="seller-avatar">
-                                <img src="assets/default-avatar.png" alt="Avatar sprzedawcy">
-                            </div>
-                            <span>Zofia Pszczoła</span>
-                        </div>
-                        <div class="product-footer">
-                            <div class="product-price">50 PLN</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i>
-                                4.7 (15)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 7 -->
-                <div class="product-card" onclick="window.location.href='product-details.html?id=7'">
-                    <div class="product-image">
-                        <img src="assets/area1.jpg" alt="Miód wielokwiatowy">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Miód wielokwiatowy górski</h3>
-                        <div class="product-category">Miód</div>
-                        <div class="product-seller">
-                            <div class="seller-avatar">
-                                <img src="assets/default-avatar.png" alt="Avatar sprzedawcy">
-                            </div>
-                            <span>Karol Pszczelarz</span>
-                        </div>
-                        <div class="product-footer">
-                            <div class="product-price">38 PLN</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i>
-                                4.6 (23)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 8 -->
-                <div class="product-card" onclick="window.location.href='product-details.html?id=8'">
-                    <div class="product-image">
-                        <img src="assets/area2.jpg" alt="Miód rzepakowy">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Miód rzepakowy naturalny</h3>
-                        <div class="product-category">Miód</div>
-                        <div class="product-seller">
-                            <div class="seller-avatar">
-                                <img src="assets/default-avatar.png" alt="Avatar sprzedawcy">
-                            </div>
-                            <span>Tomasz Miodek</span>
-                        </div>
-                        <div class="product-footer">
-                            <div class="product-price">32 PLN</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i>
-                                4.4 (17)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pagination -->
-            <div class="pagination">
-                <button class="pagination-btn pagination-nav" disabled>
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="pagination-btn active">1</button>
-                <button class="pagination-btn">2</button>
-                <button class="pagination-btn">3</button>
-                <button class="pagination-btn pagination-ellipsis">...</button>
-                <button class="pagination-btn">8</button>
-                <button class="pagination-btn pagination-nav">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            
-            <style>
-                .pagination {
-                    display: flex;
-                    justify-content: center;
-                    margin: 40px 0;
-                }
-                
-                .pagination-btn {
-                    min-width: 40px;
-                    height: 40px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    background-color: var(--white);
-                    border: 1px solid #e0e0e0;
-                    color: var(--dark);
-                    margin: 0 5px;
-                    border-radius: var(--radius);
-                    cursor: pointer;
-                    transition: all 0.2s ease;
-                    font-weight: 600;
-                }
-                
-                .pagination-btn.active {
-                    background-color: var(--primary);
-                    color: white;
-                    border-color: var(--primary);
-                    box-shadow: 0 2px 8px rgba(242, 169, 0, 0.3);
-                }
-                
-                .pagination-btn:hover:not(.active):not(:disabled) {
-                    background-color: var(--primary-light);
-                    border-color: var(--primary-light);
-                    transform: translateY(-2px);
-                }
-                
-                .pagination-nav {
-                    background-color: #f9f9f9;
-                }
-                
-                .pagination-nav:disabled {
-                    cursor: not-allowed;
-                    opacity: 0.5;
-                    background-color: #f0f0f0;
-                }
-                
-                .pagination-ellipsis {
-                    cursor: default;
-                }
-                
-                .pagination-ellipsis:hover {
-                    background-color: var(--white) !important;
-                    transform: none !important;
-                }
-            </style>
+        <!-- Grid produktów -->
+        <div class="product-grid">
+            <!-- Produkty będą załadowane przez JavaScript -->
         </div>
-    </div>
 
-    <!-- Filter toggle button for mobile -->
-    <button class="filter-toggle-btn" id="filter-toggle">
-        <i class="fas fa-filter"></i>
-    </button>
+        <!-- Paginacja -->
+        <div class="pagination">
+            <!-- Paginacja będzie załadowana przez JavaScript -->
+        </div>
+    </main>
+</div>
 
-    <script>
-        // Product filtering interactions
-        document.getElementById('category-all').addEventListener('change', function() {
-            const categoryCheckboxes = document.querySelectorAll('.filter-checkbox[id^="category-"]:not(#category-all)');
-            categoryCheckboxes.forEach(checkbox => {
-                checkbox.disabled = this.checked;
-                if (this.checked) checkbox.checked = false;
-            });
-        });
+<!-- Filter toggle button for mobile -->
+<button class="filter-toggle-btn" id="filter-toggle">
+    <i class="fas fa-filter"></i>
+</button>
 
-        document.getElementById('location-all').addEventListener('change', function() {
-            const locationCheckboxes = document.querySelectorAll('.filter-checkbox[id^="location-"]:not(#location-all)');
-            locationCheckboxes.forEach(checkbox => {
-                checkbox.disabled = this.checked;
-                if (this.checked) checkbox.checked = false;
-            });
-        });
-
-        // View toggle
-        document.querySelectorAll('.view-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                if (this.querySelector('.fa-list')) {
-                    document.querySelector('.product-grid').classList.add('list-view');
-                } else {
-                    document.querySelector('.product-grid').classList.remove('list-view');
-                }
-            });
-        });
-        
-        // Mobile filter toggle
-        document.getElementById('filter-toggle').addEventListener('click', function() {
-            const sidebar = document.querySelector('.marketplace-sidebar');
-            sidebar.classList.toggle('show-filters');
-            
-            // Change icon based on state
-            const icon = this.querySelector('i');
-            if (sidebar.classList.contains('show-filters')) {
-                icon.classList.remove('fa-filter');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-filter');
-            }
-            
-            // Scroll to top of filters when showing
-            if (sidebar.classList.contains('show-filters')) {
-                sidebar.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-        
-        // Quick action buttons stopping event propagation
-        document.querySelectorAll('.quick-action-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                
-                // Handle heart icon toggle
-                if (this.querySelector('.fa-heart')) {
-                    const icon = this.querySelector('i');
-                    if (icon.classList.contains('far')) {
-                        icon.classList.remove('far');
-                        icon.classList.add('fas');
-                        icon.style.color = '#ff6b6b';
-                    } else {
-                        icon.classList.remove('fas');
-                        icon.classList.add('far');
-                        icon.style.color = '';
-                    }
-                }
-                
-                // Handle quick view (would open modal in real implementation)
-                if (this.querySelector('.fa-eye')) {
-                    alert('Funkcja szybkiego podglądu zostanie wkrótce dodana!');
-                }
-            });
-        });
-        
-        // Range slider for price (sample implementation)
-        const priceInputs = document.querySelectorAll('.price-input');
-        priceInputs.forEach(input => {
-            input.addEventListener('input', function() {
-                // Validate min less than max
-                const min = parseInt(priceInputs[0].value) || 0;
-                const max = parseInt(priceInputs[1].value) || 1000;
-                
-                if (this === priceInputs[0] && min > max) {
-                    priceInputs[1].value = min;
-                }
-                if (this === priceInputs[1] && max < min) {
-                    priceInputs[0].value = max;
-                }
-            });
-        });
-    </script>
+<!-- JavaScript -->
+<script src="scripts/marketplace.js"></script>
 </body>
 </html>

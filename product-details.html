@@ -6,6 +6,7 @@
     <title>Szczegóły Produktu - BeeConnect</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
     <style>
         :root {
             --primary: #F2A900;         /* Miodowy żółty */
@@ -63,28 +64,6 @@
             gap: 16px;
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo {
-            width: 42px;
-            height: 42px;
-            margin-right: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--primary-light);
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .logo img {
-            max-width: 80%;
-            max-height: 80%;
-        }
 
         .welcome-message, .page-title {
             font-size: 18px;
@@ -307,7 +286,23 @@
             gap: 15px;
             margin-bottom: 25px;
         }
+        .btn-outline {
+            background-color: white;
+            color: var(--dark);
+            border: 2px solid var(--primary);
+        }
 
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .btn-block {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
         .buy-now-btn, .contact-seller-btn {
             flex: 1;
             padding: 14px;
@@ -978,563 +973,481 @@
         }
     </style>
 </head>
+<!-- PRODUCT-DETAILS.HTML - BODY -->
+<!-- Skopiuj cały ten kod i zastąp nim <body> w product-details.html -->
+
 <body>
-    <!-- Header -->
-    <div class="header">
-        <div class="logo-container">
-            <div class="logo">
-                <a href="home.html">
-                    <img src="assets/BeeConnect.png" alt="BeeConnect Logo">
-                </a>
-            </div>
-            <div class="page-title">BeeConnect</div>
-        </div>
-        <div class="header-controls">
-            <div class="welcome-message">Witaj, Dawid!</div>
-            <a href="dashboard.html" class="btn btn-outline">
-                <i class="fas fa-user"></i>
-                Mój Profil
+<!-- Header -->
+<div class="header">
+    <div class="logo-container">
+        <div class="logo">
+            <a href="home.html">
+                <img src="assets/BeeConnect.png" alt="BeeConnect Logo">
             </a>
         </div>
+        <div class="page-title">BeeConnect</div>
+    </div>
+    <div class="header-controls">
+        <a href="marketplace.html" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Wróć do marketplace
+        </a>
+        <a href="profile.html" class="btn btn-primary">
+            <i class="fas fa-user"></i> Profil
+        </a>
+    </div>
+</div>
+
+<!-- Main Container -->
+<div class="main-container">
+    <!-- Szczegóły produktu - załadowane przez JavaScript -->
+    <div class="product-details-container">
+        <!-- Tutaj zostanie załadowana zawartość przez JavaScript -->
     </div>
 
-    <!-- Main Content -->
-    <div class="product-detail-container">
-        <!-- Breadcrumbs -->
-        <div class="breadcrumbs">
-            <a href="index.html">Strona Główna</a>
-            <span class="separator">/</span>
-            <a href="marketplace.html">Marketplace</a>
-            <span class="separator">/</span>
-            <span class="current">Miód lipowy premium</span>
-        </div>
-
-        <!-- Product Detail -->
-        <div class="product-detail">
-            <div class="product-gallery">
-                <div class="product-badge">Nowość</div>
-                <div class="product-main-image">
-                    <img src="assets/product1.jpg" alt="Miód lipowy premium" id="main-product-image">
-                </div>
-                <div class="product-thumbnails">
-                    <div class="product-thumbnail active" data-src="assets/product1.jpg">
-                        <img src="assets/product1.jpg" alt="Miód lipowy - thumbnail 1">
-                    </div>
-                    <div class="product-thumbnail" data-src="assets/product2.jpg">
-                        <img src="assets/product2.jpg" alt="Miód lipowy - thumbnail 2">
-                    </div>
-                    <div class="product-thumbnail" data-src="assets/bought-product1.jpg">
-                        <img src="assets/bought-product1.jpg" alt="Miód lipowy - thumbnail 3">
-                    </div>
-                    <div class="product-thumbnail" data-src="assets/area1.jpg">
-                        <img src="assets/area1.jpg" alt="Miód lipowy - thumbnail 4">
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-info-container">
-                <h1 class="product-title">Miód lipowy premium</h1>
-                <div class="product-category">Kategoria: Miód</div>
-                
-                <div class="product-rating-container">
-                    <div class="product-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <a href="#reviews" class="rating-count">4.9 (28 opinii)</a>
-                </div>
-
-                <div class="product-price">35 PLN</div>
-
-                <div class="product-quantity">
-                    <span class="quantity-label">Ilość:</span>
-                    <div class="quantity-controls">
-                        <button class="quantity-btn decrease-btn" id="decrease-quantity">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <input type="number" class="quantity-input" id="product-quantity" value="1" min="1">
-                        <button class="quantity-btn increase-btn" id="increase-quantity">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="product-actions">
-                    <button class="btn btn-primary buy-now-btn" id="buy-now-btn">
-                        <i class="fas fa-shopping-cart"></i>
-                        Kup teraz
-                    </button>
-                    <button class="btn btn-outline contact-seller-btn" id="contact-seller-btn">
-                        <i class="fas fa-comment"></i>
-                        Napisz do sprzedawcy
-                    </button>
-                    <button class="add-to-wishlist-btn" id="add-to-wishlist-btn">
-                        <i class="far fa-heart"></i>
-                    </button>
-                </div>
-
-                <div class="seller-info">
-                    <div class="seller-avatar">
-                        <img src="assets/default-avatar.png" alt="Avatar sprzedawcy">
-                    </div>
-                    <div class="seller-details">
-                        <div class="seller-name">Jan Kowalski</div>
-                        <div class="seller-rating">
-                            <i class="fas fa-star"></i>
-                            4.8 (56 opinii)
-                        </div>
-                    </div>
-                    <a href="seller-profile.html?id=1" class="btn btn-outline view-profile-btn">
-                        Zobacz profil
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product Details Tabs -->
-        <div class="product-details-tabs">
-            <div class="tabs-header">
-                <button class="tab-button active" data-tab="description">Opis</button>
-                <button class="tab-button" data-tab="reviews">Opinie (28)</button>
-                <button class="tab-button" data-tab="shipping">Dostawa i płatność</button>
-            </div>
-
-            <div class="tab-content active" id="description">
-                <div class="product-description">
-                    <h3>O produkcie</h3>
-                    <p>Miód lipowy premium to wyjątkowy produkt pochodzący z ekologicznych pasiek położonych w czystych rejonach Podlasia. Miód zebrany został w okresie intensywnego kwitnienia lip, co nadaje mu charakterystyczny jasny kolor i intensywny aromat kwiatów lipy.</p>
-                    
-                    <p>Nasz miód lipowy charakteryzuje się delikatnym, słodkim smakiem z lekko miętową nutą, która jest typowa dla najwyższej jakości miodów lipowych. W smaku można wyczuć subtelne nuty drzewne oraz kwiatowe, które sprawiają, że jest to jeden z najbardziej cenionych rodzajów miodu.</p>
-                    
-                    <p>Jest naturalnie bogaty w związki flawonoidowe, olejki eteryczne oraz witaminy z grupy B. Miód lipowy tradycyjnie stosowany jest jako naturalny środek wspomagający w przeziębieniach, stanach zapalnych górnych dróg oddechowych oraz problemach z gardłem.</p>
-                    
-                    <p>Miód nie był poddawany nadmiernemu ogrzewaniu ani filtrowaniu, dzięki czemu zachowuje wszystkie cenne właściwości. Może się krystalizować, co jest naturalnym procesem świadczącym o jego wysokiej jakości.</p>
-                </div>
-            </div>
-
-
-            <div class="tab-content" id="reviews">
-                <h3>Opinie klientów (28)</h3>
-                <!-- Reviews would go here -->
-                <p>Sekcja z opiniami klientów zostanie dodana wkrótce.</p>
-            </div>
-
-            <div class="tab-content" id="shipping">
-                <h3>Dostawa i płatność</h3>
-                <div class="product-description">
-                    <p><strong>Opcje dostawy:</strong></p>
-                    <ul>
-                        <li>Kurier - 15 PLN (czas dostawy: 1-2 dni robocze)</li>
-                        <li>Paczkomaty InPost - 12 PLN (czas dostawy: 1-2 dni robocze)</li>
-                        <li>Odbiór osobisty - 0 PLN (po wcześniejszym umówieniu)</li>
-                    </ul>
-
-                    <p><strong>Metody płatności:</strong></p>
-                    <ul>
-                        <li>Przelew bankowy</li>
-                        <li>BLIK</li>
-                        <li>Płatność kartą</li>
-                        <li>Płatność za pobraniem (+5 PLN)</li>
-                    </ul>
-
-                    <p><strong>Polityka zwrotów:</strong></p>
-                    <p>Możesz zwrócić produkt w ciągu 14 dni od otrzymania zamówienia. Prosimy o kontakt przed dokonaniem zwrotu w celu uzgodnienia szczegółów.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Similar Products -->
-        <div class="similar-products">
-            <h2 class="section-title">Podobne produkty</h2>
-            <div class="products-slider">
-                <!-- Product 1 -->
-                <div class="product-card" onclick="window.location.href='product-details.html?id=2'">
-                    <div class="product-image">
-                        <img src="assets/product2.jpg" alt="Miód gryczany">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-title">Miód gryczany</h3>
-                        <div class="card-category">Miód</div>
-                        <div class="card-footer">
-                            <div class="card-price">40 PLN</div>
-                            <div class="card-rating">
-                                <i class="fas fa-star"></i>
-                                4.7
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="product-card" onclick="window.location.href='product-details.html?id=5'">
-                    <div class="product-image">
-                        <img src="assets/bought-product1.jpg" alt="Miód akacjowy">
-                        <div class="card-badge">Bestseller</div>
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-title">Miód akacjowy premium</h3>
-                        <div class="card-category">Miód</div>
-                        <div class="card-footer">
-                            <div class="card-price">45 PLN</div>
-                            <div class="card-rating">
-                                <i class="fas fa-star"></i>
-                                5.0
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="product-card" onclick="window.location.href='product-details.html?id=7'">
-                    <div class="product-image">
-                        <img src="assets/area1.jpg" alt="Miód wielokwiatowy">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-title">Miód wielokwiatowy górski</h3>
-                        <div class="card-category">Miód</div>
-                        <div class="card-footer">
-                            <div class="card-price">38 PLN</div>
-                            <div class="card-rating">
-                                <i class="fas fa-star"></i>
-                                4.6
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="product-card" onclick="window.location.href='product-details.html?id=8'">
-                    <div class="product-image">
-                        <img src="assets/area2.jpg" alt="Miód rzepakowy">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-title">Miód rzepakowy naturalny</h3>
-                        <div class="card-category">Miód</div>
-                        <div class="card-footer">
-                            <div class="card-price">32 PLN</div>
-                            <div class="card-rating">
-                                <i class="fas fa-star"></i>
-                                4.4
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Podobne produkty -->
+    <div class="similar-products-section">
+        <h2 class="section-title">Podobne produkty</h2>
+        <div class="similar-products-grid">
+            <!-- Podobne produkty załadowane przez JavaScript -->
         </div>
     </div>
+</div>
 
-    <!-- Buy Now Modal -->
-    <div class="modal-overlay" id="buy-modal">
-        <div class="modal">
-            <div class="modal-header">
-                <div class="modal-title">Finalizacja zakupu</div>
-                <button class="modal-close" id="close-buy-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="order-summary">
-                    <h3 class="summary-title">Podsumowanie zamówienia</h3>
-                    <div class="summary-item">
-                        <span>Miód lipowy premium</span>
-                        <span id="modal-quantity">1 x 35 PLN</span>
-                    </div>
-                    <div class="summary-item">
-                        <span>Dostawa (Kurier)</span>
-                        <span>15 PLN</span>
-                    </div>
-                    <div class="summary-item total">
-                        <span>Suma</span>
-                        <span id="modal-total">50 PLN</span>
-                    </div>
-                </div>
+<!-- Dodatkowe style dla product details -->
+<style>
+    .main-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 30px 20px;
+        min-height: calc(100vh - 70px);
+    }
 
-                <div class="shipping-address">
-                    <h3 class="summary-title">Adres dostawy</h3>
-                    <div class="form-group">
-                        <label for="full-name">Imię i nazwisko</label>
-                        <input type="text" id="full-name" class="form-control" value="Dawid Pasieka">
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Adres</label>
-                        <input type="text" id="address" class="form-control" value="ul. Miodowa 123">
-                    </div>
-                    <div class="form-group">
-                        <label for="city">Miasto</label>
-                        <input type="text" id="city" class="form-control" value="Pszczelowo">
-                    </div>
-                    <div class="form-group">
-                        <label for="zip-code">Kod pocztowy</label>
-                        <input type="text" id="zip-code" class="form-control" value="15-123">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Telefon</label>
-                        <input type="tel" id="phone" class="form-control" value="+48 123 456 789">
-                    </div>
-                </div>
+    .product-details-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        margin-bottom: 40px;
+    }
 
-                <div class="payment-methods">
-                    <h3 class="summary-title">Metoda płatności</h3>
-                    <div class="payment-option selected">
-                        <input type="radio" id="payment-bank" name="payment-method" checked>
-                        <label for="payment-bank">Przelew bankowy</label>
-                    </div>
-                    <div class="payment-option">
-                        <input type="radio" id="payment-blik" name="payment-method">
-                        <label for="payment-blik">BLIK</label>
-                    </div>
-                    <div class="payment-option">
-                        <input type="radio" id="payment-card" name="payment-method">
-                        <label for="payment-card">Karta płatnicza</label>
-                    </div>
-                    <div class="payment-option">
-                        <input type="radio" id="payment-cod" name="payment-method">
-                        <label for="payment-cod">Płatność za pobraniem (+5 PLN)</label>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-outline" id="back-to-product-btn">Wróć</button>
-                <button class="btn btn-primary" id="complete-purchase-btn">Zamawiam i płacę</button>
-            </div>
-        </div>
-    </div>
+    .product-details-left {
+        display: flex;
+        flex-direction: column;
+    }
 
-    <!-- Chat Modal -->
-    <div class="modal-overlay" id="chat-modal">
-        <div class="modal">
-            <div class="modal-header">
-                <div class="modal-title">Czat z Jan Kowalski</div>
-                <button class="modal-close" id="close-chat-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="chat-container">
-                    <div class="chat-messages" id="chat-messages">
-                        <div class="message message-received">
-                            <div class="message-content">
-                                Witaj! W czym mogę pomóc odnośnie miodu lipowego?
-                            </div>
-                            <span class="message-time">Dzisiaj, 12:30</span>
-                        </div>
-                    </div>
-                    <div class="chat-input">
-                        <input type="text" class="message-input" id="message-input" placeholder="Napisz wiadomość...">
-                        <button class="send-message-btn" id="send-message-btn">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    .product-image-main {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #f5f5f5;
+    }
 
-    <script>
-        // Quantity controls
-        const quantityInput = document.getElementById('product-quantity');
-        
-        document.getElementById('decrease-quantity').addEventListener('click', function() {
-            const currentValue = parseInt(quantityInput.value);
-            if (currentValue > 1) {
-                quantityInput.value = currentValue - 1;
-                updateModalPrice();
-            }
-        });
-        
-        document.getElementById('increase-quantity').addEventListener('click', function() {
-            const currentValue = parseInt(quantityInput.value);
-            quantityInput.value = currentValue + 1;
-            updateModalPrice();
-        });
-        
-        quantityInput.addEventListener('change', function() {
-            if (this.value < 1) {
-                this.value = 1;
-            }
-            updateModalPrice();
-        });
-        
-        // Product thumbnails
-        document.querySelectorAll('.product-thumbnail').forEach(thumbnail => {
-            thumbnail.addEventListener('click', function() {
-                const imgSrc = this.getAttribute('data-src');
-                document.getElementById('main-product-image').src = imgSrc;
-                
-                // Update active class
-                document.querySelectorAll('.product-thumbnail').forEach(thumb => {
-                    thumb.classList.remove('active');
-                });
-                this.classList.add('active');
-            });
-        });
-        
-        // Tabs functionality
-        document.querySelectorAll('.tab-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const tabId = this.getAttribute('data-tab');
-                
-                // Update active button
-                document.querySelectorAll('.tab-button').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                this.classList.add('active');
-                
-                // Update active content
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-        
-        // Wishlist button toggle
-        document.getElementById('add-to-wishlist-btn').addEventListener('click', function() {
-            this.classList.toggle('active');
-            const icon = this.querySelector('i');
-            if (this.classList.contains('active')) {
-                icon.classList.remove('far');
-                icon.classList.add('fas');
-            } else {
-                icon.classList.remove('fas');
-                icon.classList.add('far');
-            }
-        });
-        
-        // Buy Now button
-        document.getElementById('buy-now-btn').addEventListener('click', function() {
-            openModal('buy-modal');
-            updateModalPrice();
-        });
-        
-        // Contact seller button
-        document.getElementById('contact-seller-btn').addEventListener('click', function() {
-            openModal('chat-modal');
-            // Focus on the message input
-            setTimeout(() => {
-                document.getElementById('message-input').focus();
-            }, 300);
-        });
-        
-        // Modal functions
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+    .product-image-main img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .product-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 13px;
+        color: white;
+    }
+
+    .product-badge.unavailable {
+        background: #dc3545;
+    }
+
+    .product-badge.out-of-stock {
+        background: #6c757d;
+    }
+
+    .product-details-right {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .product-category-badge {
+        display: inline-block;
+        padding: 6px 14px;
+        background: var(--primary-light);
+        color: var(--primary);
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        width: fit-content;
+    }
+
+    .product-name {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--secondary);
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    .product-rating-section {
+        padding: 12px 0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .rating-stars {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .rating-stars i {
+        color: #FFD700;
+        font-size: 18px;
+    }
+
+    .rating-text {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .review-count {
+        font-size: 14px;
+        color: #888;
+    }
+
+    .no-reviews {
+        color: #999;
+        font-style: italic;
+    }
+
+    .product-price-section {
+        padding: 15px 0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .product-price-main {
+        font-size: 42px;
+        font-weight: 700;
+        color: var(--primary);
+        line-height: 1;
+    }
+
+    .product-unit {
+        font-size: 14px;
+        color: #666;
+        margin-top: 5px;
+    }
+
+    .product-info-grid {
+        display: grid;
+        gap: 15px;
+        padding: 20px 0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .info-item i {
+        font-size: 20px;
+        color: var(--primary);
+        width: 24px;
+    }
+
+    .info-label {
+        font-weight: 600;
+        color: #666;
+        margin-right: 8px;
+    }
+
+    .info-value {
+        color: #333;
+    }
+
+    .seller-info {
+        padding: 20px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 12px;
+        border: 1px solid #dee2e6;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .seller-info-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid rgba(242, 169, 0, 0.3);
+    }
+
+    .seller-info-header i {
+        color: var(--primary);
+        font-size: 20px;
+        align-items: flex-start;
+    }
+
+    .seller-info-header span {
+        font-size: 14px;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+    }
+
+    .seller-info-content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .seller-name {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--secondary);
+        line-height: 1.3;
+        text-align: right;  /* Tekst wyrównany do prawej */
+        word-break: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
+    }
+
+    .seller-email {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: #6c757d;
+        flex-direction: row-reverse;  /* Ikona po prawej stronie */
+    }
+
+    .seller-email i {
+        color: var(--primary);
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+
+    .seller-email span {
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-align: right;
+    }
+    .purchase-section {
+        padding: 24px;
+        background: #fff7e6;
+        border-radius: 8px;
+        border: 2px solid var(--primary);
+    }
+
+    .purchase-section h3 {
+        margin: 0 0 20px 0;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .quantity-selector {
+        margin-bottom: 20px;
+    }
+
+    .quantity-selector label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        font-family: inherit;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(242, 169, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+        font-size: 14px;
+    }
+
+    .owner-section, .login-prompt, .unavailable-section {
+        padding: 24px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .info-message {
+        color: #17a2b8;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .error-message {
+        color: #dc3545;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .product-description-section {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        margin-bottom: 40px;
+    }
+
+    .product-description-section h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: var(--secondary);
+    }
+
+    .product-description-section p {
+        font-size: 15px;
+        line-height: 1.8;
+        color: #555;
+    }
+
+    .similar-products-section {
+        margin-top: 50px;
+    }
+
+    .section-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--secondary);
+        margin-bottom: 25px;
+    }
+
+    .similar-products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .product-card-small {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card-small:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+
+    .product-card-small img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .product-card-small .card-info {
+        padding: 15px;
+    }
+
+    .product-card-small h4 {
+        margin: 0 0 10px 0;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .product-card-small .price {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 8px;
+    }
+
+    .product-card-small .rating {
+        font-size: 13px;
+        color: #666;
+    }
+
+    .product-card-small .rating i {
+        color: #FFD700;
+        margin-right: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+        .product-details-wrapper {
+            grid-template-columns: 1fr;
+            gap: 30px;
         }
-        
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-            document.body.style.overflow = 'auto'; // Allow scrolling
+
+        .product-name {
+            font-size: 26px;
         }
-        
-        // Close modal buttons
-        document.getElementById('close-buy-modal').addEventListener('click', function() {
-            closeModal('buy-modal');
-        });
-        
-        document.getElementById('close-chat-modal').addEventListener('click', function() {
-            closeModal('chat-modal');
-        });
-        
-        document.getElementById('back-to-product-btn').addEventListener('click', function() {
-            closeModal('buy-modal');
-        });
-        
-        // Complete purchase
-        document.getElementById('complete-purchase-btn').addEventListener('click', function() {
-            alert('Dziękujemy za zakup! Wkrótce otrzymasz szczegóły zamówienia na e-mail.');
-            closeModal('buy-modal');
-        });
-        
-        // Payment method selection
-        document.querySelectorAll('.payment-option').forEach(option => {
-            option.addEventListener('click', function() {
-                // Select the radio button
-                const radio = this.querySelector('input[type="radio"]');
-                radio.checked = true;
-                
-                // Update selected state
-                document.querySelectorAll('.payment-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                this.classList.add('selected');
-                
-                // Update total if COD selected
-                updateModalPrice();
-            });
-        });
-        
-        // Send message functionality
-        document.getElementById('send-message-btn').addEventListener('click', sendMessage);
-        document.getElementById('message-input').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                sendMessage();
-            }
-        });
-        
-        function sendMessage() {
-            const messageInput = document.getElementById('message-input');
-            const message = messageInput.value.trim();
-            
-            if (message) {
-                const chatMessages = document.getElementById('chat-messages');
-                const now = new Date();
-                const timeString = `Dzisiaj, ${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`;
-                
-                const messageHTML = `
-                    <div class="message message-sent">
-                        <div class="message-content">
-                            ${message}
-                        </div>
-                        <span class="message-time">${timeString}</span>
-                    </div>
-                `;
-                
-                chatMessages.innerHTML += messageHTML;
-                messageInput.value = '';
-                
-                // Scroll to the bottom
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-                
-                // Simulate a response after a short delay
-                setTimeout(() => {
-                    const responseHTML = `
-                        <div class="message message-received">
-                            <div class="message-content">
-                                Dziękuję za wiadomość. Odpowiem najszybciej jak to możliwe!
-                            </div>
-                            <span class="message-time">${timeString}</span>
-                        </div>
-                    `;
-                    
-                    chatMessages.innerHTML += responseHTML;
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }, 1000);
-            }
+
+        .product-price-main {
+            font-size: 36px;
         }
-        
-        // Update modal price based on quantity and payment method
-        function updateModalPrice() {
-            const quantity = parseInt(document.getElementById('product-quantity').value);
-            const basePrice = 35; // PLN
-            const shippingCost = 15; // PLN
-            
-            let total = (quantity * basePrice) + shippingCost;
-            
-            // Add COD fee if selected
-            if (document.getElementById('payment-cod').checked) {
-                total += 5;
-            }
-            
-            document.getElementById('modal-quantity').textContent = `${quantity} x ${basePrice} PLN`;
-            document.getElementById('modal-total').textContent = `${total} PLN`;
+
+        .similar-products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         }
-        
-        // Close modal when clicking outside
-        window.addEventListener('click', function(event) {
-            if (event.target.classList.contains('modal-overlay')) {
-                closeModal(event.target.id);
-            }
-        });
-    </script>
+    }
+
+    @media (max-width: 576px) {
+        .main-container {
+            padding: 20px 10px;
+        }
+
+        .product-details-wrapper {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 22px;
+        }
+
+        .product-price-main {
+            font-size: 32px;
+        }
+
+        .similar-products-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<!-- JavaScript -->
+<script src="scripts/product-details.js"></script>
 </body>
 </html>
